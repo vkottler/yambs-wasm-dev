@@ -47,6 +47,10 @@ jobs:
           sudo ./llvm.sh 17
           rm llvm.sh
 
+      - run: sudo apt-get install emscripten
+      - run: emcc --version
+      - run: em++ --version
+
       - run: sudo apt-get install gcc-13 g++-13 lcov doxygen clang-17 clang-format-17
       # List versions.
       - run: gcc-13 --version
@@ -61,7 +65,7 @@ jobs:
 
       # Need to clean because codecov is not finding coverage otherwise.
       - run: mk c keep=debug
-      - run: mk t
+      - run: mk t variant=debug
 
       - uses: codecov/codecov-action@v3
         with:

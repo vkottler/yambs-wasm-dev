@@ -1,6 +1,8 @@
 ---
 name: yambs-wasm-dev
-description: Short project description.
+description: C++ WASM testing and development.
+
+wasm: true
 
 version:
   major: 0

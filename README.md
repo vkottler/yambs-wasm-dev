@@ -2,7 +2,7 @@
     =====================================
     generator=datazen
     version=3.1.4
-    hash=cdc6f30afd6b54d52bc4ad333f91ab6e
+    hash=1236758a22099765fbddad5c29b7fcd6
     =====================================
 -->
 
@@ -11,7 +11,7 @@
 [![codecov](https://codecov.io/gh/vkottler/yambs-wasm-dev/branch/master/graph/badge.svg)](https://codecov.io/gh/vkottler/yambs-wasm-dev)
 ![Build Status](https://github.com/vkottler/yambs-wasm-dev/actions/workflows/yambs-project.yml/badge.svg)
 
-*Short project description.*
+*C++ WASM testing and development.*
 
 ## Documentation
 
