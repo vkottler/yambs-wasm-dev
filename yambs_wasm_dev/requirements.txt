@@ -1,6 +1,8 @@
 # Workflow tasks.
+svgen
 vmklib
 yambs
+runtimepy
 
 # Documentation.
 sphinx
