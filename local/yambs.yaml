@@ -4,3 +4,10 @@ includes:
   - package://yambs/includes/wasm.yaml
 
 default_target: wasm
+
+variants:
+  debug: &debug
+    enabled: false
+  opt: *debug
+  clang: *debug
+  clang-opt: *debug

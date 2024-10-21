@@ -8,13 +8,12 @@ from typing import Optional
 
 # third-party
 from runtimepy.net.arbiter.info import AppInfo
+from runtimepy.net.html import append_kind
 from runtimepy.net.http.header import RequestHeader
 from runtimepy.net.http.response import ResponseHeader
 from runtimepy.net.server import RuntimepyServerConnection
-from runtimepy.net.server.app.elements import div
-from runtimepy.net.server.app.files import append_kind
 from svgen.element import Element
-from svgen.element.html import Html
+from svgen.element.html import Html, div
 from vcorelib.asyncio.cli import run_command
 
 
@@ -42,6 +41,8 @@ async def build_app(app: AppInfo, is_async: bool = True) -> Element:
 
 async def setup(app: AppInfo) -> int:
     """Perform server application setup steps."""
+
+    del app
 
     async def main(
         document: Html,

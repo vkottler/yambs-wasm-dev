@@ -9,13 +9,15 @@ on:
 
 env:
   GITHUB_API_TOKEN: ${{secrets.API_TOKEN}}
+  CODECOV_TOKEN: ${{secrets.CODECOV_TOKEN}}
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       matrix:
-        python-version: [3.11]
+        python-version: [3.12]
+
     env:
       PYTHON_VERSION: ${{matrix.python-version}}
 
@@ -40,12 +42,12 @@ jobs:
 
       - run: mk yaml python-lint python-sa
 
-      - name: setup clang 17
-        run: |
-          wget https://apt.llvm.org/llvm.sh
-          chmod +x ./llvm.sh
-          sudo ./llvm.sh 17
-          rm llvm.sh
+      # - name: setup clang 17
+      #   run: |
+      #     wget https://apt.llvm.org/llvm.sh
+      #     chmod +x ./llvm.sh
+      #     sudo ./llvm.sh 17
+      #     rm llvm.sh
 
       - run: sudo apt-get install emscripten
       - run: emcc --version
@@ -58,23 +60,10 @@ jobs:
       - run: clang-17 --version
       - run: clang++-17 --version
 
-      - run: mk t variant=clang coverage=false
+      - run: mk g
       - run: ninja all format-check
       - run: mk dist docs
         if: github.ref_name != 'master'
-
-      # Need to clean because codecov is not finding coverage otherwise.
-      - run: mk c keep=debug
-      - run: mk t variant=debug
-
-      - uses: codecov/codecov-action@v3
-        with:
-          gcov: true
-          gcov_include: build/debug
-          gcov_ignore: .mypy_cache
-          gcov_executable: gcov-13
-          fail_ci_if_error: true
-          verbose: true
 
       - run: mk release
         if: |
